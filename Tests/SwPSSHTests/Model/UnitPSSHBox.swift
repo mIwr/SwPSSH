@@ -10,6 +10,18 @@ import XCTest
 
 final class UnitPSSHBox: XCTestCase {
     
+    func testCommonPSSHV1Parse() {
+        let pssh = PSSHBox.from(b64EncodedBox: TestConstants.commonPSSHBoxV1Encoded)
+        XCTAssertNotNil(pssh, "Invalid PSSH parser")
+        XCTAssertEqual(pssh?.keyIDs?.count, 2, "Invalid PSSH parser")
+    }
+    
+    func testCommonPSSHV1Serialize() {
+        let pssh = PSSHBox.from(b64EncodedBox: TestConstants.commonPSSHBoxV1Encoded)
+        let serialized = pssh?.serialize()
+        XCTAssertEqual(serialized, TestConstants.commonPSSHBoxV1Encoded, "Invalid PSSH serializer")
+    }
+    
     func testWidevinePSSHParse() {
         let pssh = PSSHBox.from(b64EncodedBox: TestConstants.wdvPSSHBoxEncoded)
         XCTAssertNotNil(pssh, "Invalid PSSH parser")

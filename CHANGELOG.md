@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.1
+**10.08.2024**
+
+- PSSH box Version 1 support: PSSH key IDs processing
+
 ## 1.0.0
 **10.08.2024**
 

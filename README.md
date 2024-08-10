@@ -46,6 +46,8 @@ PSSH DOES NOT contain the enryption key itself (it’s a secret), but it contain
 | PSSH version   | UInt8               | There are two versions of PSSH box: 0 (commonly used) and 1 (new 'recommended') |
 | Flags          | Bytes array (3)     | PSSH box bit flags                                                              |
 | System ID      | Bytes array         | Constant system UUID bytes array (16)                                           |
+| Key IDs count  | UInt32 (Big endian) | Common PSSH V1 key IDs count. Optional                                          |
+| Key IDs        | Bytes array         | Common PSSH V1 key IDs data. Optional                                           |
 | Init data size | UInt32 (Big endian) | PSSH box init data size in bytes                                                |
 | Init data      | Bytes array         | PSSH box init data. Contains payload instance raw data according system ID      |
 

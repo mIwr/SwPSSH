@@ -12,6 +12,8 @@ import Foundation
 final class TestConstants {
     
     static let zeroContentKey: [UInt8] = [ 0xf3, 0x83, 0xd4, 0x50, 0x0f, 0x5c, 0xb9, 0x14, 0x56, 0x4e, 0x51, 0xce, 0xa9, 0x09, 0x9c, 0x26 ]
+    
+    static let commonPSSHBoxV1Encoded = "AAAARHBzc2gBAAAAEHfv7MCyTQKs4zweUuL7SwAAAAIwMTIzNDU2Nzg5MDEyMzQ1QUJDREVGR0hJSktMTU5PUAAAAAA="
 
     static let wdvPSSHBoxEncoded = "AAAAU3Bzc2gAAAAA7e+LqXnWSs6jyCfc1R0h7QAAADMIARIQXsZdsnRvQ8pFjENjZV8bqBoHc3BvdGlmeSIUXsZdsnRvQ8pFjENjZV8bqM7ElBU="
     

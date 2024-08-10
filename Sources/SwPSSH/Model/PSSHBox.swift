@@ -16,13 +16,19 @@ public class PSSHBox {
     public let version: UInt8
     ///PSSH flags (3 bytes)
     public let flags: [UInt8]
+    ///PSSH key IDs. Available on PSSH Version 1
+    public let keyIDs: [[UInt8]]?
     ///PSSH system raw init data
     public let initData: Data?
     
-    public init(sysID: [UInt8], version: UInt8, flags: [UInt8], initData: Data?) {
+    public init(sysID: [UInt8], version: UInt8, flags: [UInt8], keyIDs: [[UInt8]]?, initData: Data?) {
         self.sysID = sysID
         self.version = version
         self.flags = flags
+        if (version == 0 && keyIDs?.isEmpty == false) {
+            print("Warning: PSSH Version 0 doesn't contain PSSH key IDs")
+        }
+        self.keyIDs = keyIDs
         self.initData = initData
     }
     
@@ -34,6 +40,14 @@ public class PSSHBox {
         bytes.append(version)
         bytes.append(contentsOf: flags)
         bytes.append(contentsOf: sysID)
+        if (version == 1) {
+            //Serialize key IDs
+            let safeKeyIDs = keyIDs ?? []
+            bytes.append(contentsOf: PSSHBinaryUtil.getBytes(UInt32(safeKeyIDs.count), bigEndian: true))
+            for keyID in safeKeyIDs {
+                bytes.append(contentsOf: keyID)
+            }
+        }
         if let safePayload = initData {
             let payloadSize = UInt32(safePayload.count)
             bytes.append(contentsOf: PSSHBinaryUtil.getBytes(payloadSize, bigEndian: true))
@@ -61,9 +75,7 @@ public class PSSHBox {
     ///- Returns: PSSH box parse result. Optional
     public static func from(boxData: Data) -> PSSHBox? {
         if (boxData.count < PSSHConstants.psshHeader.count + 4) {
-#if DEBUG
-            print("Input box bytes doesn't have PSSH header")
-#endif
+            print("Error: Input box bytes doesn't have PSSH header")
             return nil
         }
         let boxBytes = [UInt8].init(boxData)
@@ -74,9 +86,7 @@ public class PSSHBox {
             print("Warning: Invalid box sizes info. Expected " + String(boxBytes.count) + ", but was " + String(boxSize))
         }
         if (boxBytes[offset] != PSSHConstants.psshHeader[0] || boxBytes[offset + 1] != PSSHConstants.psshHeader[1] || boxBytes[offset + 2] != PSSHConstants.psshHeader[2] || boxBytes[offset + 3] != PSSHConstants.psshHeader[3]) {
-            #if DEBUG
-            print("Input box bytes doesn't have PSSH header")
-            #endif
+            print("Error: Input box bytes doesn't have PSSH header")
             return nil
         }
         offset += 4
@@ -91,26 +101,60 @@ public class PSSHBox {
         }
         offset += 3
         if (offset + 16 >= boxBytes.count) {
-            #if DEBUG
             print("Unexpected PSSH box EOF: No info about System ID (16 bytes)")
-            #endif
             return nil
         }
         let sysID = [UInt8].init(boxBytes[offset...offset + 15])
         offset += 16
+        var keyIDs: [[UInt8]]?
+        if (version == 1) {
+            //Parse PSSH key IDs
+            if (offset + 4 >= boxBytes.count) {
+                print("Unexpected PSSH box EOF: No info about key IDs count (4 bytes)")
+                return nil
+            }
+            let keyIDsCount: Int32 = PSSHBinaryUtil.getVal(boxBytes, offset: offset, bigEndian: true) ?? -1
+            offset += 4
+            if (keyIDsCount < 0) {
+                #if DEBUG
+                print("Warning: Invalid PSSH key IDs count")
+                #endif
+            } else {
+                keyIDs = []
+                if (keyIDsCount > 0) {
+                    for i in 0...keyIDsCount - 1 {
+                        if (offset + 16 >= boxBytes.count) {
+                            #if DEBUG
+                            print("Unexpected PSSH box EOF: No info about key ID " + String(i + 1) + " (16 bytes)")
+                            #endif
+                            break
+                        }
+                        let bytes = [UInt8].init(boxBytes[offset...offset + 15])
+                        offset += 16
+                        keyIDs?.append(bytes)
+                    }
+                }
+            }
+        }
+        if (offset + 4 >= boxBytes.count) {
+#if DEBUG
+            print("PSSH box EOF: No info about init data size (4 bytes)")
+#endif
+            return PSSHBox(sysID: sysID, version: version, flags: flags, keyIDs: keyIDs, initData: nil)
+        }
         let payloadSize: Int32 = PSSHBinaryUtil.getVal(boxBytes, offset: offset, bigEndian: true) ?? -1
         offset += 4
         if (offset >= boxBytes.count || payloadSize <= 0) {
             #if DEBUG
             print("Warning: Nil PSSH box data")
             #endif
-            return PSSHBox(sysID: sysID, version: version, flags: flags, initData: nil)
+            return PSSHBox(sysID: sysID, version: version, flags: flags, keyIDs: keyIDs, initData: nil)
         }
         let payload = [UInt8].init(boxBytes[offset...offset + Int(payloadSize) - 1])
         offset += Int(payloadSize)
         if (boxBytes.count > offset) {
             print("Warning: read position isn't at the end (" + String(offset) + "/" + String(boxBytes.count) + ") . Possible unknown version of PSSH box with new data")
         }
-        return PSSHBox(sysID: sysID, version: version, flags: flags, initData: Data(payload))
+        return PSSHBox(sysID: sysID, version: version, flags: flags, keyIDs: keyIDs, initData: Data(payload))
     }
 }

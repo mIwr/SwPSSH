@@ -63,7 +63,7 @@ final class UnitPlayReadyPSSHData: XCTestCase {
         let pssh = PSSHBox.from(b64EncodedBox: TestConstants.playReadyPSSHBoxEncoded)
         let playReadyPayload = pssh?.playReadyPayload
         let rebuiltPlayReadyPayloadData = playReadyPayload?.serialize()
-        let rebuiltPssh = PSSHBox(sysID: pssh?.sysID ?? [], version: pssh?.version ?? 0, flags: pssh?.flags ?? [], initData: rebuiltPlayReadyPayloadData)
+        let rebuiltPssh = PSSHBox(sysID: pssh?.sysID ?? [], version: pssh?.version ?? 0, flags: pssh?.flags ?? [], keyIDs: nil, initData: rebuiltPlayReadyPayloadData)
         let serialized = rebuiltPssh.serialize()
         XCTAssertEqual(serialized, TestConstants.playReadyPSSHBoxEncoded, "Invalid PSSH serializer")
     }

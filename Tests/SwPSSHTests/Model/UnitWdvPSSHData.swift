@@ -14,7 +14,7 @@ final class UnitWdvPSSHData: XCTestCase {
         let pssh = PSSHBox.from(b64EncodedBox: TestConstants.wdvPSSHBoxEncoded)
         let wdvPayload = pssh?.wdvPayload
         let rebuiltWdvPayloadData = try? wdvPayload?.serializedData()
-        let rebuiltPssh = PSSHBox(sysID: pssh?.sysID ?? [], version: pssh?.version ?? 0, flags: pssh?.flags ?? [], initData: rebuiltWdvPayloadData)
+        let rebuiltPssh = PSSHBox(sysID: pssh?.sysID ?? [], version: pssh?.version ?? 0, flags: pssh?.flags ?? [], keyIDs: nil, initData: rebuiltWdvPayloadData)
         let serialized = rebuiltPssh.serialize()
         XCTAssertEqual(serialized, TestConstants.wdvPSSHBoxEncoded, "Invalid PSSH serializer")
     }
