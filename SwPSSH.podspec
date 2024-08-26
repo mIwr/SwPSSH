@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "SwPSSH"
-  spec.version      = "1.0.1"
+  spec.version      = "1.1.0"
   spec.summary      = "Protection System Specific Header (PSSH) box container swift impl. Supports Widevine and PlayReady"
   spec.homepage     = "https://github.com/mIwr/SwPSSH"
   spec.license      = { :type => "MIT", :file => "LICENSE" }
@@ -15,6 +15,5 @@ Pod::Spec.new do |spec|
   spec.exclude_files = "Sources/Exclude", "Sources/Exclude/*.*"
   spec.framework     = "Foundation"
   spec.dependency    "SwiftProtobuf"
-  spec.dependency    "CryptoSwift"
   spec.resource_bundles = {'SwPSSH' => ['Sources/SwPSSH/PrivacyInfo.xcprivacy']}
 end

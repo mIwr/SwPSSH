@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "SwPSSH",
     platforms: [
-        .macOS(.v10_13), .iOS(.v11), .tvOS(.v11), .watchOS(.v4), .custom("visionos", versionString: "1.0")
+        .macOS(.v10_13), .macCatalyst(.v13), .iOS(.v11), .tvOS(.v11), .watchOS(.v5), .visionOS(.v1) 
     ],
     products: [
         .library(

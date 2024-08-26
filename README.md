@@ -31,7 +31,10 @@
 
 The library allows to parse/serialize PSSH boxes with Widevine or PlayReady payload
 
-macOS 10.13+ and iOS 11.0+ are supported by the module. Other platforms (watchOS 4.0+, tvOS 11.0+, Windows, Linux, Android) have experimental support
+macOS 10.13+ and iOS 11.0+ are supported by the module code base. Other platforms (watchOS 4.0+, tvOS 11.0+, Windows, Linux, Android) have experimental support
+
+**Notice: XCode 15+ doesn't allow to use iOS 11, tvOS 11 as minimum deployment target during build process. So the mimimum deployment target for these platforms in your project must be 12 in fact.**
+**If you want to bypass this limitation, you have to roll back to XCode 14.** More info: [1](https://github.com/Alamofire/Alamofire/pull/3823), [2](https://github.com/realm/realm-swift/issues/8368#issuecomment-1737604011)
 
 ### General PSSH box container schema
 
@@ -95,7 +98,7 @@ Widevine PSSH data schema used from [protobuf model](https://github.com/devine-d
 SwPSSH is available with SPM
 
 ```
-.package(url: "https://github.com/mIwr/SwPSSH.git", .from(from: "1.0.0"))
+.package(url: "https://github.com/mIwr/SwPSSH.git", .from(from: "1.1.0"))
 ```
 
 ### CocoaPods

@@ -103,6 +103,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B150F6F2C7C7F4D001FED2B /* Exclude */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Exclude;
+			sourceTree = "<group>";
+		};
 		8B3B1B7E2C6626210019070D = {
 			isa = PBXGroup;
 			children = (
@@ -163,7 +170,7 @@
 		8B3B1BA62C6627840019070D /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				8B5C5AE42C675B430034A96E /* Exclude */,
+				8B150F6F2C7C7F4D001FED2B /* Exclude */,
 				8B3B1B8A2C6626210019070D /* SwPSSH */,
 				8BF9A76A2C67918400FFFD9D /* SwPSSH.h */,
 			);
@@ -246,13 +253,6 @@
 				8B4148B02C667F2A000F07CE /* PlayReadyRecordHeaderXmlParser.swift */,
 			);
 			path = Header;
-			sourceTree = "<group>";
-		};
-		8B5C5AE42C675B430034A96E /* Exclude */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Exclude;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -541,7 +541,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -560,7 +560,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.6;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = org.zeit.pssh;
@@ -575,7 +575,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4,7";
 				TVOS_DEPLOYMENT_TARGET = 11.0;
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 5.0;
 			};
 			name = Debug;
 		};
@@ -584,7 +584,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -603,7 +603,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.6;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = org.zeit.pssh;
@@ -617,7 +617,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4,7";
 				TVOS_DEPLOYMENT_TARGET = 11.0;
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 5.0;
 			};
 			name = Release;
 		};

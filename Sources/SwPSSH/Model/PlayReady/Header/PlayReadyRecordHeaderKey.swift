@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import CryptoSwift
 
 ///Key data for given license
 public class PlayReadyRecordHeaderKey {
@@ -118,15 +117,11 @@ public class PlayReadyRecordHeaderKey {
             return []
         case PlayReadyRecordHeaderKeyAlgo.aesCtrKey:
             //For an ALGID value set to "AESCTR", the 16-byte Key ID is encrypted with a 16-byte AES content key using ECB mode. The first 8 bytes of the buffer is extracted and base64 encoded.
-            do {
-                let aesEng = try AES(key: contentKey, blockMode: ECB(), padding: .pkcs7)
-                let enc = try aesEng.encrypt(keyID)
-                let checksumBytes = [UInt8].init(enc[0...7])
-                return checksumBytes
-            } catch {
-                print(error)
+            let enc = PSSHCryptoUtil.aesEcb128Encrypt(msg: keyID, key: contentKey)
+            if (enc.count < 8) {
+                return enc
             }
-            return []
+            return [UInt8].init(enc[0...7])
         case PlayReadyRecordHeaderKeyAlgo.cocktailKey:
             //A 21-byte buffer is created. The content key is put in the buffer and the rest of the buffer is filled with zeros.
             //For five iterations: buffer = SHA-1 (buffer)

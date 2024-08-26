@@ -5,7 +5,7 @@
 //  Created by developer on 10.08.2024.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 //! Project version number for SwPSSH.
 FOUNDATION_EXPORT double SwPSSHVersionNumber;
