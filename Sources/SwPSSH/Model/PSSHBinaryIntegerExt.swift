@@ -6,7 +6,7 @@
 //
 
 ///Bytes view representation for binary integer values
-protocol BinaryIntegerByteView {
+protocol PSSHBinaryIntegerByteView {
     ///Big-Endian bytes view
     var beBytes: [UInt8] {
          get
@@ -18,7 +18,7 @@ protocol BinaryIntegerByteView {
     }
 }
 
-extension UInt64: BinaryIntegerByteView {
+extension UInt64: PSSHBinaryIntegerByteView {
     var beBytes: [UInt8] {
         get {
             return leBytes.reversed()
@@ -32,7 +32,7 @@ extension UInt64: BinaryIntegerByteView {
     }
 }
 
-extension UInt32: BinaryIntegerByteView {
+extension UInt32: PSSHBinaryIntegerByteView {
     var beBytes: [UInt8] {
         get {
             return leBytes.reversed()
@@ -46,7 +46,7 @@ extension UInt32: BinaryIntegerByteView {
     }
 }
 
-extension UInt16: BinaryIntegerByteView {
+extension UInt16: PSSHBinaryIntegerByteView {
     var beBytes: [UInt8] {
         get {
             return leBytes.reversed()
@@ -60,7 +60,7 @@ extension UInt16: BinaryIntegerByteView {
     }
 }
 
-extension UInt8: BinaryIntegerByteView {
+extension UInt8: PSSHBinaryIntegerByteView {
     var beBytes: [UInt8] {
         get {
             return [self]
@@ -74,7 +74,7 @@ extension UInt8: BinaryIntegerByteView {
     }
 }
 
-extension Int8: BinaryIntegerByteView {
+extension Int8: PSSHBinaryIntegerByteView {
     var beBytes: [UInt8] {
         get {
             let uVal = UInt8(bitPattern: self)
@@ -89,7 +89,7 @@ extension Int8: BinaryIntegerByteView {
     }
 }
 
-extension Int16: BinaryIntegerByteView {
+extension Int16: PSSHBinaryIntegerByteView {
     var beBytes: [UInt8] {
         get {
             return leBytes.reversed()
@@ -104,7 +104,7 @@ extension Int16: BinaryIntegerByteView {
     }
 }
 
-extension Int32: BinaryIntegerByteView {
+extension Int32: PSSHBinaryIntegerByteView {
     var beBytes: [UInt8] {
         get {
             return leBytes.reversed()
@@ -119,7 +119,7 @@ extension Int32: BinaryIntegerByteView {
     }
 }
 
-extension Int64: BinaryIntegerByteView {
+extension Int64: PSSHBinaryIntegerByteView {
     var beBytes: [UInt8] {
         get {
             return leBytes.reversed()

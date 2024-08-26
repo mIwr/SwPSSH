@@ -72,4 +72,54 @@ final class PSSHCryptoUtil {
         }
         return digestHex
     }
+    
+#if canImport(CommonCrypto)
+    static func aesEcb128Encrypt(msg: [UInt8], key: [UInt8]) -> [UInt8] {
+        let msgData = Data(msg)
+        let keyData = Data(key)
+        var cryptData = Data(count: msg.count + kCCBlockSizeAES128)
+        let cryptDataCount = cryptData.count
+        var numBytesEncrypted: size_t = 0
+        let cryptStatus = cryptData.withUnsafeMutableBytes{ encryptedPtr in
+            guard let encAddr = encryptedPtr.baseAddress else {return CCCryptorStatus(kCCParamError)}
+            let encBuffPtr: UnsafeMutablePointer<UInt8> = encAddr.assumingMemoryBound(to: UInt8.self)
+            let encryptedRawPtr = UnsafeMutableRawPointer(encBuffPtr)
+            return msgData.withUnsafeBytes { msgPtr in
+                guard let msgAddr = msgPtr.baseAddress else {return CCCryptorStatus(kCCParamError)}
+                let msgBuffPtr: UnsafePointer<UInt8> = msgAddr.assumingMemoryBound(to: UInt8.self)
+                let msgRawPtr = UnsafeRawPointer(msgBuffPtr)
+                let ivData = Data()
+                return ivData.withUnsafeBytes { ivPtr in
+                    guard let ivAddr = ivPtr.baseAddress else {return CCCryptorStatus(kCCParamError)}
+                    let ivBuffPtr: UnsafePointer<UInt8> = ivAddr.assumingMemoryBound(to: UInt8.self)
+                    let ivRawPtr = UnsafeRawPointer(ivBuffPtr)
+                    return keyData.withUnsafeBytes { keyPtr in
+                        guard let keyAddr = keyPtr.baseAddress else {return CCCryptorStatus(kCCParamError)}
+                        let keyBuffPtr: UnsafePointer<UInt8> = keyAddr.assumingMemoryBound(to: UInt8.self)
+                        let keyRawPtr = UnsafeRawPointer(keyBuffPtr)
+                        return CCCrypt(CCOperation(kCCEncrypt), CCAlgorithm(kCCAlgorithmAES), CCOptions(kCCOptionECBMode + kCCOptionPKCS7Padding), keyRawPtr, size_t(kCCKeySizeAES128), ivRawPtr, msgRawPtr, msgData.count, encryptedRawPtr, cryptDataCount, &numBytesEncrypted)
+                    }
+                }
+            }
+        }
+        if (Int(cryptStatus) == kCCSuccess) {
+            cryptData.removeSubrange(numBytesEncrypted..<cryptData.count)
+        } else {
+            print("AES-ECB-128 encrypt error: \(cryptStatus)")
+        }
+
+        return [UInt8].init(cryptData)
+    }
+#else
+    static func aesEcb128Encrypt(msg: [UInt8], key: [UInt8]) -> [UInt8] {
+        do {
+            let aesEng = try AES(key: contentKey, blockMode: ECB(), padding: .pkcs7)
+            let enc = try aesEng.encrypt(keyID)
+            return enc
+        } catch {
+            print(error)
+        }
+        return []
+    }
+#endif
 }

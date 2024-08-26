@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.0
+**26.08.2024**
+
+- Remove CryptoSwift dependency from podspec. Built-in CommonCypto will be used
+
 ## 1.0.1
 **10.08.2024**
 
