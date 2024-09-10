@@ -78,6 +78,7 @@ public class PSSHBox {
             print("Error: Input box bytes doesn't have PSSH header")
             return nil
         }
+        
         let boxBytes = [UInt8].init(boxData)
         var offset = 0
         let boxSize: Int32 = PSSHBinaryUtil.getVal(boxBytes, offset: offset, bigEndian: true) ?? -1

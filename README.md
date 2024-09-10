@@ -29,7 +29,7 @@
 
 ## Introduction
 
-The library allows to parse/serialize PSSH boxes with Widevine or PlayReady payload
+The library allows to parse/serialize PSSH boxes with Widevine, PlayReady or Nagra payload
 
 macOS 10.13+ and iOS 11.0+ are supported by the module code base. Other platforms (watchOS 4.0+, tvOS 11.0+, Windows, Linux, Android) have experimental support
 
@@ -60,6 +60,7 @@ PSSH DOES NOT contain the enryption key itself (it’s a secret), but it contain
 |--------------------|--------------------------------------|
 | Widevine           | edef8ba9-79d6-4ace-a3c8-27dcd51d21ed |
 | PlayReady          | 9a04f079-9840-4286-ab92-e65be0885f95 |
+| Nagra              | adb41c24-2dbf-4a6d-958b-4457c0d27b95 |
 | FairPlay           | 94ce86fb-07ff-4f43-adb8-93d2fa968ca2 |
 | Common (Version 1) | 1077efec-c0b2-4d02-ace3-3c1e52e2fb4b |
 
@@ -69,7 +70,7 @@ More details you can find at [Axinom](https://docs.axinom.com/services/drm/techn
 
 Microsoft DRM system. PlayReady init data mixes binary (PSSH data and inner records) and XML (Record header) formats
 
-Binary PlayReady PSSH data is a top-level model. Contains next fields:
+Binary PlayReady PSSH data is a top-level model. Contains the next fields:
 
 | Field name     | Type                   | Description                                         | 
 |----------------|------------------------|-----------------------------------------------------|
@@ -77,7 +78,7 @@ Binary PlayReady PSSH data is a top-level model. Contains next fields:
 | Records count  | UIn16 (Little endian)  | PlayReady records count                             |
 | Records' data  | Bytes array            | Records' data sequence                              |
 
-Each item in records data sequence contains next fields:
+Each item in records data sequence contains the next fields:
 
 | Field name        | Type                   | Description                                                                  | 
 |-------------------|------------------------|------------------------------------------------------------------------------|
@@ -91,6 +92,17 @@ More details you can find at [Microsoft docs](https://learn.microsoft.com/en-us/
 
 Widevine PSSH data schema used from [protobuf model](https://github.com/devine-dl/pywidevine)
 
+### Nagra PSSH data schema
+
+Nagra init data is Base64-encoded JSON string. Decoded JSON contains the next fields:
+
+| Field name    | Type        | Description           | 
+|---------------|-------------|-----------------------|
+| Content ID    | String      | Nagra PSSH content ID |
+| Key ID        | Hex string  | Nagra PSSH key ID     |
+
+**Notice: Nagra PSSH data [supports converting to Widevine](./Sources/SwPSSH/Model/Nagra/NagraPsshData+WDVConverter.swift)**
+
 ## Setup
 
 ### Swift Package Manager
@@ -98,7 +110,7 @@ Widevine PSSH data schema used from [protobuf model](https://github.com/devine-d
 SwPSSH is available with SPM
 
 ```
-.package(url: "https://github.com/mIwr/SwPSSH.git", .from(from: "1.1.0"))
+.package(url: "https://github.com/mIwr/SwPSSH.git", .from(from: "1.2.0"))
 ```
 
 ### CocoaPods
@@ -137,7 +149,7 @@ pod 'SwPSSH'
 
 Main class for work with PSSH box containers is [PSSHBox](./Sources/SwPSSH/Model/PSSHBox.swift).
 It provides methods for parsing and serializing general data on box containers.
-When you successfully parsed the PSSH box, you can transform init data to Widevine or PlayReady
+When you successfully parsed the PSSH box, you can transform init data to Widevine, PlayReady or Nagra
 
 ```swift
 import SwPSSH
@@ -145,4 +157,5 @@ import SwPSSH
 let pssh: PSSHBox? = PSSHBox.from(b64EncodedBox: PSSHBoxEncoded)
 let playReadyPayload: PlayReadyPsshData? = pssh?.playReadyPayload//Tries to parse PlayReady PSSH data from raw init data
 let wdvPayload: WidevinePsshData? = pssh?.wdvPayload//Tries to parse Widevine PSSH data from raw init data
+let nagraPayload: NagraPsshData? = pssh?.nagraPayload//Tries to parse Nagra PSSH data from raw init data
 ```

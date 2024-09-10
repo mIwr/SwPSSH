@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B3A9EDD2C90B2B7002C734F /* NagraPsshData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3A9EDC2C90B2B7002C734F /* NagraPsshData.swift */; };
+		8B3A9EDF2C90B36B002C734F /* UnitNagraPSSHData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3A9EDE2C90B36B002C734F /* UnitNagraPSSHData.swift */; };
+		8B3A9EE12C90B424002C734F /* PSSHBox+Nagra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3A9EE02C90B424002C734F /* PSSHBox+Nagra.swift */; };
+		8B3A9EE32C90C001002C734F /* NagraPsshData+WDVConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3A9EE22C90C001002C734F /* NagraPsshData+WDVConverter.swift */; };
 		8B3B1B912C6626210019070D /* SwPSSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3B1B882C6626210019070D /* SwPSSH.framework */; };
 		8B3B1BA52C66266A0019070D /* SwiftProtobuf in Frameworks */ = {isa = PBXBuildFile; productRef = 8B3B1BA42C66266A0019070D /* SwiftProtobuf */; };
 		8B3B1BAB2C6627B60019070D /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3B1BA82C6627B40019070D /* TestConstants.swift */; };
@@ -17,8 +21,8 @@
 		8B3B1BB92C662BF70019070D /* PSSHBinaryUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3B1BB82C662BF70019070D /* PSSHBinaryUtil.swift */; };
 		8B3B1BBC2C662D010019070D /* UnitPSSHBinaryUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3B1BBB2C662D010019070D /* UnitPSSHBinaryUtil.swift */; };
 		8B3B1BC02C6634C00019070D /* UnitPSSHBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3B1BBF2C6634C00019070D /* UnitPSSHBox.swift */; };
-		8B41489E2C665635000F07CE /* PSSHBoxWdvExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B41489D2C665635000F07CE /* PSSHBoxWdvExt.swift */; };
-		8B4148A02C665658000F07CE /* PSSHBoxPlayReadyExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B41489F2C665658000F07CE /* PSSHBoxPlayReadyExt.swift */; };
+		8B41489E2C665635000F07CE /* PSSHBox+Wdv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B41489D2C665635000F07CE /* PSSHBox+Wdv.swift */; };
+		8B4148A02C665658000F07CE /* PSSHBox+PlayReady.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B41489F2C665658000F07CE /* PSSHBox+PlayReady.swift */; };
 		8B4148A22C665859000F07CE /* PlayReadyPsshData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4148A12C665859000F07CE /* PlayReadyPsshData.swift */; };
 		8B4148A52C665924000F07CE /* PlayReadyRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4148A42C665924000F07CE /* PlayReadyRecord.swift */; };
 		8B4148A72C66596C000F07CE /* PlayReadyRecordType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4148A62C66596C000F07CE /* PlayReadyRecordType.swift */; };
@@ -46,6 +50,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B3A9EDC2C90B2B7002C734F /* NagraPsshData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NagraPsshData.swift; sourceTree = "<group>"; };
+		8B3A9EDE2C90B36B002C734F /* UnitNagraPSSHData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitNagraPSSHData.swift; sourceTree = "<group>"; };
+		8B3A9EE02C90B424002C734F /* PSSHBox+Nagra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PSSHBox+Nagra.swift"; sourceTree = "<group>"; };
+		8B3A9EE22C90C001002C734F /* NagraPsshData+WDVConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NagraPsshData+WDVConverter.swift"; sourceTree = "<group>"; };
 		8B3B1B882C6626210019070D /* SwPSSH.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwPSSH.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B3B1B902C6626210019070D /* SwPSSHTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwPSSHTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B3B1BA12C6626370019070D /* License.proto */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.protobuf; path = License.proto; sourceTree = "<group>"; };
@@ -58,8 +66,8 @@
 		8B3B1BB82C662BF70019070D /* PSSHBinaryUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSSHBinaryUtil.swift; sourceTree = "<group>"; };
 		8B3B1BBB2C662D010019070D /* UnitPSSHBinaryUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitPSSHBinaryUtil.swift; sourceTree = "<group>"; };
 		8B3B1BBF2C6634C00019070D /* UnitPSSHBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitPSSHBox.swift; sourceTree = "<group>"; };
-		8B41489D2C665635000F07CE /* PSSHBoxWdvExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSSHBoxWdvExt.swift; sourceTree = "<group>"; };
-		8B41489F2C665658000F07CE /* PSSHBoxPlayReadyExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSSHBoxPlayReadyExt.swift; sourceTree = "<group>"; };
+		8B41489D2C665635000F07CE /* PSSHBox+Wdv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PSSHBox+Wdv.swift"; sourceTree = "<group>"; };
+		8B41489F2C665658000F07CE /* PSSHBox+PlayReady.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PSSHBox+PlayReady.swift"; sourceTree = "<group>"; };
 		8B4148A12C665859000F07CE /* PlayReadyPsshData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayReadyPsshData.swift; sourceTree = "<group>"; };
 		8B4148A42C665924000F07CE /* PlayReadyRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayReadyRecord.swift; sourceTree = "<group>"; };
 		8B4148A62C66596C000F07CE /* PlayReadyRecordType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayReadyRecordType.swift; sourceTree = "<group>"; };
@@ -108,6 +116,15 @@
 			children = (
 			);
 			path = Exclude;
+			sourceTree = "<group>";
+		};
+		8B3A9EDB2C90B284002C734F /* Nagra */ = {
+			isa = PBXGroup;
+			children = (
+				8B3A9EDC2C90B2B7002C734F /* NagraPsshData.swift */,
+				8B3A9EE22C90C001002C734F /* NagraPsshData+WDVConverter.swift */,
+			);
+			path = Nagra;
 			sourceTree = "<group>";
 		};
 		8B3B1B7E2C6626210019070D = {
@@ -188,10 +205,12 @@
 		8B3B1BAD2C6627EF0019070D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8B3A9EDB2C90B284002C734F /* Nagra */,
 				8B4148A32C6658F9000F07CE /* PlayReady */,
 				8B3B1BB02C6628670019070D /* PSSHBox.swift */,
-				8B41489D2C665635000F07CE /* PSSHBoxWdvExt.swift */,
-				8B41489F2C665658000F07CE /* PSSHBoxPlayReadyExt.swift */,
+				8B41489D2C665635000F07CE /* PSSHBox+Wdv.swift */,
+				8B3A9EE02C90B424002C734F /* PSSHBox+Nagra.swift */,
+				8B41489F2C665658000F07CE /* PSSHBox+PlayReady.swift */,
 				8B3B1BB52C662B050019070D /* PSSHBinaryIntegerExt.swift */,
 			);
 			path = Model;
@@ -226,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				8B3B1BBF2C6634C00019070D /* UnitPSSHBox.swift */,
+				8B3A9EDE2C90B36B002C734F /* UnitNagraPSSHData.swift */,
 				8B4148AC2C666C1D000F07CE /* UnitPlayReadyPSSHData.swift */,
 				8BF9A7702C67972200FFFD9D /* UnitPlayReadyHeaderKey.swift */,
 				8B4148AA2C666B06000F07CE /* UnitWdvPSSHData.swift */,
@@ -374,11 +394,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B4148B62C6684E0000F07CE /* PlayReadyRecordHeaderKeyAlgo.swift in Sources */,
+				8B3A9EE12C90B424002C734F /* PSSHBox+Nagra.swift in Sources */,
 				8B3B1BB92C662BF70019070D /* PSSHBinaryUtil.swift in Sources */,
 				8B4148A92C665A4E000F07CE /* PlayReadyRecordHeader.swift in Sources */,
 				8B3B1BAF2C6628200019070D /* PSSHConstants.swift in Sources */,
 				8B3B1BB12C6628670019070D /* PSSHBox.swift in Sources */,
 				8B4148B12C667F2A000F07CE /* PlayReadyRecordHeaderXmlParser.swift in Sources */,
+				8B3A9EE32C90C001002C734F /* NagraPsshData+WDVConverter.swift in Sources */,
 				8B4148A52C665924000F07CE /* PlayReadyRecord.swift in Sources */,
 				8B4148A72C66596C000F07CE /* PlayReadyRecordType.swift in Sources */,
 				8B4148B42C66819D000F07CE /* PlayReadyRecordHeaderKey.swift in Sources */,
@@ -386,9 +408,10 @@
 				8B3B1BB42C66292F0019070D /* License.pb.swift in Sources */,
 				8B3B1BB62C662B050019070D /* PSSHBinaryIntegerExt.swift in Sources */,
 				8BF9A76B2C67918400FFFD9D /* SwPSSH.h in Sources */,
+				8B3A9EDD2C90B2B7002C734F /* NagraPsshData.swift in Sources */,
 				8B4148A22C665859000F07CE /* PlayReadyPsshData.swift in Sources */,
-				8B4148A02C665658000F07CE /* PSSHBoxPlayReadyExt.swift in Sources */,
-				8B41489E2C665635000F07CE /* PSSHBoxWdvExt.swift in Sources */,
+				8B4148A02C665658000F07CE /* PSSHBox+PlayReady.swift in Sources */,
+				8B41489E2C665635000F07CE /* PSSHBox+Wdv.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +421,7 @@
 			files = (
 				8BF9A7712C67972200FFFD9D /* UnitPlayReadyHeaderKey.swift in Sources */,
 				8B3B1BAB2C6627B60019070D /* TestConstants.swift in Sources */,
+				8B3A9EDF2C90B36B002C734F /* UnitNagraPSSHData.swift in Sources */,
 				8B4148AD2C666C1D000F07CE /* UnitPlayReadyPSSHData.swift in Sources */,
 				8B4148AB2C666B06000F07CE /* UnitWdvPSSHData.swift in Sources */,
 				8B3B1BBC2C662D010019070D /* UnitPSSHBinaryUtil.swift in Sources */,
@@ -541,7 +565,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -560,7 +584,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.6;
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = org.zeit.pssh;
@@ -584,7 +608,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -603,7 +627,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.6;
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = org.zeit.pssh;

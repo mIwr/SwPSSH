@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.0
+**10.09.2024**
+
+- Nagra PSSH data parser/serializer from PSSH box support
+
 ## 1.1.0
 **26.08.2024**
 

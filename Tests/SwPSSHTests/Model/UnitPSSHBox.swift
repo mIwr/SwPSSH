@@ -49,4 +49,18 @@ final class UnitPSSHBox: XCTestCase {
         let serialized = pssh?.serialize()
         XCTAssertEqual(serialized, TestConstants.playReadyPSSHBoxEncoded, "Invalid PSSH serializer")
     }
+    
+    func testNagraPSSHParse() {
+        let pssh = PSSHBox.from(b64EncodedBox: TestConstants.nagraPSSHBoxEncoded)
+        XCTAssertNotNil(pssh, "Invalid PSSH parser")
+        XCTAssertTrue(pssh?.nagraSystem == true, "Invalid Nagra PSSH data or parser")
+        let nagraPayload = pssh?.nagraPayload
+        XCTAssertNotNil(nagraPayload, "Invalid Nagra PSSH data or parser")
+    }
+    
+    func testNagraPSSHSerialize() {
+        let pssh = PSSHBox.from(b64EncodedBox: TestConstants.nagraPSSHBoxEncoded)
+        let serialized = pssh?.serialize()
+        XCTAssertEqual(serialized, TestConstants.nagraPSSHBoxEncoded, "Invalid PSSH serializer")
+    }
 }
