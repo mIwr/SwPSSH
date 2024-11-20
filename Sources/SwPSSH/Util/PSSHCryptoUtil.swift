@@ -113,8 +113,8 @@ final class PSSHCryptoUtil {
 #else
     static func aesEcb128Encrypt(msg: [UInt8], key: [UInt8]) -> [UInt8] {
         do {
-            let aesEng = try AES(key: contentKey, blockMode: ECB(), padding: .pkcs7)
-            let enc = try aesEng.encrypt(keyID)
+            let aesEng = try AES(key: key, blockMode: ECB(), padding: .pkcs7)
+            let enc = try aesEng.encrypt(msg)
             return enc
         } catch {
             print(error)

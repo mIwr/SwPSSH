@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.1
+**20.11.2024**
+
+- Non-Apple platforms build support fixes
+
 ## 1.2.0
 **10.09.2024**
 

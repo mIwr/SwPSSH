@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "SwPSSH"
-  spec.version      = "1.2.0"
+  spec.version      = "1.2.1"
   spec.summary      = "Protection System Specific Header (PSSH) box container swift impl. Supports Widevine, PlayReady and Nagra"
   spec.homepage     = "https://github.com/mIwr/SwPSSH"
   spec.license      = { :type => "MIT", :file => "LICENSE" }

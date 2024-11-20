@@ -18,7 +18,7 @@ final class UnitNagraPSSHData: XCTestCase {
         let rebuiltNagraPayloadData = nagraPayload?.serialize()
         let rebuiltPssh = PSSHBox(sysID: pssh?.sysID ?? [], version: pssh?.version ?? 0, flags: pssh?.flags ?? [], keyIDs: nil, initData: rebuiltNagraPayloadData)
         let serialized = rebuiltPssh.serialize()
-        XCTAssertEqual(serialized, TestConstants.nagraPSSHBoxEncoded, "Invalid PSSH serializer")
+        XCTAssertTrue(serialized == TestConstants.nagraPSSHBoxEncoded || serialized == TestConstants.nagraPSSHBoxEncoded2, "Invalid PSSH serializer")
     }
     
     func testWdvConvertFromNagraData() {

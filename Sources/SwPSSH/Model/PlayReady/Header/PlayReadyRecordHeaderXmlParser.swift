@@ -6,6 +6,10 @@
 //
 
 import Foundation
+//Non-Apple platforms XML support
+#if canImport(FoundationXML)
+import FoundationXML
+#endif
 
 ///PlayReady record header parser
 class PlayReadyRecordHeaderXmlParser: NSObject, XMLParserDelegate {
