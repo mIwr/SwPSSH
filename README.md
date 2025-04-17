@@ -110,7 +110,7 @@ Nagra init data is Base64-encoded JSON string. Decoded JSON contains the next fi
 SwPSSH is available with SPM
 
 ```
-.package(url: "https://github.com/mIwr/SwPSSH.git", .from(from: "1.2.1"))
+.package(url: "https://github.com/mIwr/SwPSSH.git", .from(from: "1.2.2"))
 ```
 
 ### CocoaPods
