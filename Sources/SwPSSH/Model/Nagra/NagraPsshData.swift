@@ -8,7 +8,7 @@
 import Foundation
 
 ///The Nagra PSSH data from box container
-public class NagraPsshData: Codable {
+public final class NagraPsshData: Codable {
     
     ///Content ID
     public let contentId: String
@@ -53,3 +53,7 @@ public class NagraPsshData: Codable {
         return nil
     }
 }
+
+#if swift(>=5.5)
+extension NagraPsshData: Sendable {}
+#endif

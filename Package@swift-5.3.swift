@@ -1,4 +1,4 @@
-// swift-tools-version:6.0
+// swift-tools-version:5.3
 import PackageDescription
 
 let protobufMinVersion: Version = "1.36.1"
@@ -25,7 +25,7 @@ let mainTargetDependencies: [Target.Dependency] = [
 let package = Package(
     name: "SwPSSH",
     platforms: [
-        .macOS(.v10_13), .macCatalyst(.v13), .iOS(.v11), .tvOS(.v11), .watchOS(.v5), .visionOS(.v1)
+        .macOS(.v10_13), .macCatalyst(.v13), .iOS(.v11), .tvOS(.v11), .watchOS(.v5)
     ],
     products: [
         .library(
@@ -37,5 +37,5 @@ let package = Package(
         .target(name: "SwPSSH", dependencies: mainTargetDependencies, resources: [.copy("PrivacyInfo.xcprivacy")]),
         .testTarget(name: "SwPSSHTests", dependencies: ["SwPSSH"]),
     ],
-    swiftLanguageVersions: [.v5, .v6]
+    swiftLanguageVersions: [.v5]
 )

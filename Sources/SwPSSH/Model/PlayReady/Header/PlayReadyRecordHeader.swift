@@ -10,7 +10,7 @@ import Foundation
 ///PlayReady Header (PRH) is used by a client to locate or acquire a license for the piece of content it is stored in
 ///
 ///Raw data is encoded using UTF-16LE
-public class PlayReadyRecordHeader {
+public final class PlayReadyRecordHeader {
     
     ///Header version
     public let version: String
@@ -47,6 +47,30 @@ public class PlayReadyRecordHeader {
         self.domainServiceIdBytes = [UInt8].init(data)
     }
     
+    
+    
+#if swift(>=5.5)
+    ///Tries to parse PlayReady header from record object
+    ///- Parameter record: PlayReady Record Object
+    ///- Parameter parseCallback: PlayReady Record Object parse completion handler
+    public static func from(record: PlayReadyRecord, parseCallback: @escaping @Sendable (PlayReadyRecordHeader?) -> ()) {
+        _ = PlayReadyRecordHeaderXmlParser(xmlData: record.recordValue, parsedCallback: parseCallback)
+    }
+    
+    ///Tries to parse PlayReady header from record object
+    ///- Parameter record: PlayReady Record Object
+    ///- Returns: PlayReady Record Header parse result
+    public static func fromSync(record: PlayReadyRecord) -> PlayReadyRecordHeader? {
+        let res = ConcurrentPlayReadyRecordHeader()
+        let dispatchSemaphore = DispatchSemaphore(value: 0)
+        _ = PlayReadyRecordHeaderXmlParser(xmlData: record.recordValue) { header in
+            res.set(newVal: header)
+            dispatchSemaphore.signal()
+        }
+        _ = dispatchSemaphore.wait(timeout: .distantFuture)
+        return res.get()
+    }
+#else
     ///Tries to parse PlayReady header from record object
     ///- Parameter record: PlayReady Record Object
     ///- Parameter parseCallback: PlayReady Record Object parse completion handler
@@ -59,14 +83,43 @@ public class PlayReadyRecordHeader {
     ///- Returns: PlayReady Record Header parse result
     public static func fromSync(record: PlayReadyRecord) -> PlayReadyRecordHeader? {
         var res: PlayReadyRecordHeader?
-        var finish = false
+        let dispatchSemaphore = DispatchSemaphore(value: 0)
         _ = PlayReadyRecordHeaderXmlParser(xmlData: record.recordValue) { header in
             res = header
-            finish = true
+            dispatchSemaphore.signal()
         }
-        while !finish {
-            Thread.sleep(forTimeInterval: 0.1)
-        }
+        _ = dispatchSemaphore.wait(timeout: .distantFuture)
         return res
     }
+#endif
 }
+
+#if swift(>=5.5)
+extension PlayReadyRecordHeader: Sendable {}
+
+/// Thread-safe general-purpose xml parse result PlayReadyRecordHeader
+fileprivate final class ConcurrentPlayReadyRecordHeader: @unchecked Sendable {
+    
+    /// Integer raw value
+    private var value: PlayReadyRecordHeader?
+    /// Dispatch queue
+    private let queue = DispatchQueue(label: "xml-parsed.record")
+
+    init(initialValue: PlayReadyRecordHeader? = nil) {
+        self.value = initialValue
+    }
+
+    /// Sets value
+    /// - Parameter newVal: PlayReadyRecordHeader instance new value
+    func set(newVal: PlayReadyRecordHeader?) {
+        queue.sync {
+            value = newVal
+        }
+    }
+
+    /// Retrieves the value (thread-safe)
+    func get() -> PlayReadyRecordHeader? {
+        return queue.sync { value }
+    }
+}
+#endif

@@ -10,7 +10,7 @@ import Foundation
 ///The PlayReady Object (PRO) from PSSH box
 ///
 ///Object schema: https://learn.microsoft.com/en-us/playready/specifications/playready-header-specification
-public class PlayReadyPsshData {
+public final class PlayReadyPsshData {
     
     public static let minSize: UInt8 = 6
     
@@ -68,3 +68,7 @@ public class PlayReadyPsshData {
         return PlayReadyPsshData(records: records)
     }
 }
+
+#if swift(>=5.5)
+extension PlayReadyPsshData: Sendable {}
+#endif

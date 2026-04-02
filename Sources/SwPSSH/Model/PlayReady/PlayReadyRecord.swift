@@ -8,7 +8,7 @@
 import Foundation
 
 ///The PlayReady PSSH record object
-public class PlayReadyRecord {
+public final class PlayReadyRecord {
     
     public static let minSize: UInt8 = 4
     
@@ -74,3 +74,7 @@ public class PlayReadyRecord {
     }
     
 }
+
+#if swift(>=5.5)
+extension PlayReadyRecord: Sendable {}
+#endif

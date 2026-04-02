@@ -9,6 +9,7 @@ import Foundation
 
 extension NagraPsshData {
     
+    /// Transforms Nagra PSSH payload data as Widevine payload
     public func asWidevinePsshData() -> WidevinePsshData {
         var wdvPsshData = WidevinePsshData()
         wdvPsshData.algorithm = .aesctr

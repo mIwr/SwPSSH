@@ -5,6 +5,22 @@
 //  Created by developer on 18.07.2024.
 //
 
+
+
+#if swift(>=5.5)
+///Bytes view representation for binary integer values
+protocol PSSHBinaryIntegerByteView: Sendable {
+    ///Big-Endian bytes view
+    var beBytes: [UInt8] {
+         get
+    }
+    
+    ///Little-Endian bytes view
+    var leBytes: [UInt8] {
+        get
+    }
+}
+#else
 ///Bytes view representation for binary integer values
 protocol PSSHBinaryIntegerByteView {
     ///Big-Endian bytes view
@@ -17,6 +33,7 @@ protocol PSSHBinaryIntegerByteView {
         get
     }
 }
+#endif
 
 extension UInt64: PSSHBinaryIntegerByteView {
     var beBytes: [UInt8] {

@@ -8,7 +8,7 @@
 import Foundation
 
 ///Key data for given license
-public class PlayReadyRecordHeaderKey {
+public final class PlayReadyRecordHeaderKey {
     
     static let keySize: UInt8 = 16
     static let keySeedSize: UInt8 = 30
@@ -140,3 +140,7 @@ public class PlayReadyRecordHeaderKey {
     }
     
 }
+
+#if swift(>=5.5)
+extension PlayReadyRecordHeaderKey: Sendable {}
+#endif

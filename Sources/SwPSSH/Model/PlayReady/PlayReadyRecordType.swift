@@ -16,3 +16,7 @@ public enum PlayReadyRecordType: UInt16 {
     case embed = 3
     
 }
+
+#if swift(>=5.5)
+extension PlayReadyRecordType: Sendable {}
+#endif

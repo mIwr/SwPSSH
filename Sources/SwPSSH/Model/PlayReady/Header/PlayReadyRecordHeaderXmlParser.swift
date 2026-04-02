@@ -12,7 +12,7 @@ import FoundationXML
 #endif
 
 ///PlayReady record header parser
-class PlayReadyRecordHeaderXmlParser: NSObject, XMLParserDelegate {
+final class PlayReadyRecordHeaderXmlParser: NSObject, XMLParserDelegate {
     
     //4.3.0 fields
     ///Outermost element of the header object. It can contain one DATA element and must contain one version attribute. The version for the header is "4.3.0.0". Every time Microsoft defines new mandatory tags or attributes, a new version number is associated with those tags or attributes. If the version is greater than that for which the client code was written, then the client code must fail, because it implies that the header contains mandatory tags that the client does not understand. If the version is less than or equal to that for which the client code was written, than the client code can safely skip any tags or attributes that it does not understand
@@ -58,40 +58,46 @@ class PlayReadyRecordHeaderXmlParser: NSObject, XMLParserDelegate {
     ///Specifies the size of the content key. Must be set to 16 if ALGID is set to "AESCTR" and 7 if ALGID is set to "COCKTAIL"
     public static let kidKeyLenKey = "KEYLEN"
     
+#if swift(>=5.5)
+    ///Event-driven xml parse result callback
+    fileprivate let _parsedCallback: @Sendable (PlayReadyRecordHeader?) -> ()
+#else
     ///Event-driven xml parse result callback
     fileprivate let _parsedCallback: (PlayReadyRecordHeader?) -> ()
+#endif
+    
     
     ///Header version
-    fileprivate var _version: String
+    nonisolated(unsafe) fileprivate var _version: String
     ///Header keys
-    fileprivate var _keys: [PlayReadyRecordHeaderKey]
+    nonisolated(unsafe) fileprivate var _keys: [PlayReadyRecordHeaderKey]
     ///Legacy header version key algorithm key
-    fileprivate var _singleKeyAlgo: String
+    nonisolated(unsafe) fileprivate var _singleKeyAlgo: String
     ///Legacy header version base64-encoded key ID
-    fileprivate var _singleKeyId: String
+    nonisolated(unsafe) fileprivate var _singleKeyId: String
     ///Legacy header version key length
-    fileprivate var _singleKeyLen: UInt8
+    nonisolated(unsafe) fileprivate var _singleKeyLen: UInt8
     ///Legacy header version base64-encoded content key and key ID checksum
-    fileprivate var _singleKeyChecksum: String
+    nonisolated(unsafe) fileprivate var _singleKeyChecksum: String
     ///License acquisition Url
-    fileprivate var _laUrl: String
+    nonisolated(unsafe) fileprivate var _laUrl: String
     ///License UI Url
-    fileprivate var _luiUrl: String
+    nonisolated(unsafe) fileprivate var _luiUrl: String
     ///Base64-encoded domain service UUID
-    fileprivate var _dsId: String
+    nonisolated(unsafe) fileprivate var _dsId: String
     ///Header custom attributes from author
-    fileprivate var _customAttributes: [String: Any]
+    nonisolated(unsafe) fileprivate var _customAttributes: [String: Any]
     
-    fileprivate let _parser: XMLParser
     ///Processing element name
-    fileprivate var _elementName: String
+    nonisolated(unsafe) fileprivate var _elementName: String
     ///Processing element value
-    fileprivate var _elementData: String
+    nonisolated(unsafe) fileprivate var _elementData: String
     
-    public init (xmlData: Data, parsedCallback: @escaping (PlayReadyRecordHeader?) -> ()) {
+#if swift(>=5.5)
+    public init (xmlData: Data, parsedCallback: @escaping @Sendable (PlayReadyRecordHeader?) -> ()) {
         let utf16Str = String(data: xmlData, encoding: .utf16LittleEndian)
         let data = utf16Str?.data(using: .utf8) ?? xmlData
-        _parser = XMLParser(data: data)
+        let parser = XMLParser(data: data)
         _parsedCallback = parsedCallback
         _version = ""
         _keys = []
@@ -106,9 +112,34 @@ class PlayReadyRecordHeaderXmlParser: NSObject, XMLParserDelegate {
         _elementName = ""
         _elementData = ""
         super.init()
-        _parser.delegate = self
-        _parser.parse()
+        parser.delegate = self
+        parser.parse()
     }
+#else
+    public init (xmlData: Data, parsedCallback: @escaping (PlayReadyRecordHeader?) -> ()) {
+        let utf16Str = String(data: xmlData, encoding: .utf16LittleEndian)
+        let data = utf16Str?.data(using: .utf8) ?? xmlData
+        let parser = XMLParser(data: data)
+        _parsedCallback = parsedCallback
+        _version = ""
+        _keys = []
+        _singleKeyAlgo = ""
+        _singleKeyId = ""
+        _singleKeyLen = 0
+        _singleKeyChecksum = ""
+        _laUrl = ""
+        _luiUrl = ""
+        _dsId = ""
+        _customAttributes = [:]
+        _elementName = ""
+        _elementData = ""
+        super.init()
+        parser.delegate = self
+        parser.parse()
+    }
+#endif
+    
+    
     
     func parserDidEndDocument(_ parser: XMLParser) {
         if (!_singleKeyId.isEmpty) {
@@ -175,3 +206,7 @@ class PlayReadyRecordHeaderXmlParser: NSObject, XMLParserDelegate {
         _elementData = ""
     }
 }
+
+#if swift(>=5.5)
+extension PlayReadyRecordHeaderXmlParser: Sendable {}
+#endif

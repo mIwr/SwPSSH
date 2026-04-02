@@ -47,3 +47,7 @@ extension PlayReadyRecordHeaderKeyAlgo {
     }
     
 }
+
+#if swift(>=5.5)
+extension PlayReadyRecordHeaderKeyAlgo: Sendable {}
+#endif

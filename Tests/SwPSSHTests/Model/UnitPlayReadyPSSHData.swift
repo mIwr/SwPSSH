@@ -10,7 +10,7 @@ import XCTest
 
 final class UnitPlayReadyPSSHData: XCTestCase {
     
-    func testPlayReadyHeaderAsyncParse() {
+    func testPlayReadyHeaderAsyncParse() async {
         let pssh = PSSHBox.from(b64EncodedBox: TestConstants.playReadyPSSHBoxEncoded)
         if let playReadyRecord = pssh?.playReadyPayload?.records.first {
             let exp = self.expectation(description: "Request time-out expectation")
@@ -18,13 +18,7 @@ final class UnitPlayReadyPSSHData: XCTestCase {
                 XCTAssertNotNil(header, "Invalid PlayReady PSSH parser")
                 exp.fulfill()
             }
-            waitForExpectations(timeout: 10) { error in
-                if let g_error = error
-                {
-                    print(g_error)
-                    XCTAssert(false, "Timeout error: " + g_error.localizedDescription)
-                }
-            }
+            await fulfillment(of: [exp], timeout: 10)
         }
     }
     

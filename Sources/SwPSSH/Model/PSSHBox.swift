@@ -8,7 +8,7 @@
 import Foundation
 
 /// Protection System Specific Header (PSSH) box container
-public class PSSHBox {
+public final class PSSHBox {
     
     ///PSSH system ID bytes
     public let sysID: [UInt8]
@@ -159,3 +159,7 @@ public class PSSHBox {
         return PSSHBox(sysID: sysID, version: version, flags: flags, keyIDs: keyIDs, initData: Data(payload))
     }
 }
+
+#if swift(>=5.5)
+extension PSSHBox: Sendable {}
+#endif

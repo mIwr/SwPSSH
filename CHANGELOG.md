@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.3
+**02.04.2026**
+
+- Support for Swift 6 (Strict Concurrency)
+- Bump dependencies
+
 ## 1.2.2
 **17.04.2025**
 

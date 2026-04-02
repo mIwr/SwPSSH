@@ -1,7 +1,10 @@
-// swift-tools-version:6.0
+// swift-tools-version:5.9
 import PackageDescription
 
 let protobufMinVersion: Version = "1.36.1"
+let swiftSettings: [SwiftSetting] = [
+    .enableUpcomingFeature("StrictConcurrency")
+]
 
 #if targetEnvironment(simulator) || targetEnvironment(macCatalyst) || os(macOS) || os(iOS) || os(watchOS) || os(tvOS) || os(visionOS)
 //Exclude CryptoSwift package (used built-in CommonCrypto)
@@ -34,8 +37,8 @@ let package = Package(
     ],
     dependencies: dependencies,
     targets: [
-        .target(name: "SwPSSH", dependencies: mainTargetDependencies, resources: [.copy("PrivacyInfo.xcprivacy")]),
-        .testTarget(name: "SwPSSHTests", dependencies: ["SwPSSH"]),
+        .target(name: "SwPSSH", dependencies: mainTargetDependencies, resources: [.copy("PrivacyInfo.xcprivacy")], swiftSettings: swiftSettings),
+        .testTarget(name: "SwPSSHTests", dependencies: ["SwPSSH"], swiftSettings: swiftSettings),
     ],
-    swiftLanguageVersions: [.v5, .v6]
+    swiftLanguageVersions: [.v5]
 )

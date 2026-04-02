@@ -33,7 +33,6 @@
 		8B4148B42C66819D000F07CE /* PlayReadyRecordHeaderKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4148B32C66819D000F07CE /* PlayReadyRecordHeaderKey.swift */; };
 		8B4148B62C6684E0000F07CE /* PlayReadyRecordHeaderKeyAlgo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4148B52C6684E0000F07CE /* PlayReadyRecordHeaderKeyAlgo.swift */; };
 		8BF9A7662C678BDC00FFFD9D /* PSSHCryptoUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF9A7652C678BDC00FFFD9D /* PSSHCryptoUtil.swift */; };
-		8BF9A76B2C67918400FFFD9D /* SwPSSH.h in Sources */ = {isa = PBXBuildFile; fileRef = 8BF9A76A2C67918400FFFD9D /* SwPSSH.h */; };
 		8BF9A76D2C6791D400FFFD9D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 8BF9A76C2C6791D400FFFD9D /* PrivacyInfo.xcprivacy */; };
 		8BF9A7712C67972200FFFD9D /* UnitPlayReadyHeaderKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF9A7702C67972200FFFD9D /* UnitPlayReadyHeaderKey.swift */; };
 /* End PBXBuildFile section */
@@ -49,6 +48,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B25AE4A2F7E530D001A6D4B /* Package@swift-5.9.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Package@swift-5.9.swift"; sourceTree = "<group>"; };
+		8B25AE4B2F7E531D001A6D4B /* Package@swift-5.10.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Package@swift-5.10.swift"; sourceTree = "<group>"; };
+		8B25B0972F7E593B001A6D4B /* Package@swift-5.3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Package@swift-5.3.swift"; sourceTree = "<group>"; };
 		8B3A9EDC2C90B2B7002C734F /* NagraPsshData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NagraPsshData.swift; sourceTree = "<group>"; };
 		8B3A9EDE2C90B36B002C734F /* UnitNagraPSSHData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitNagraPSSHData.swift; sourceTree = "<group>"; };
 		8B3A9EE02C90B424002C734F /* PSSHBox+Nagra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PSSHBox+Nagra.swift"; sourceTree = "<group>"; };
@@ -84,7 +86,6 @@
 		8B5C5AE32C675ABF0034A96E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		8B5C5AE52C675C5B0034A96E /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		8BF9A7652C678BDC00FFFD9D /* PSSHCryptoUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSSHCryptoUtil.swift; sourceTree = "<group>"; };
-		8BF9A76A2C67918400FFFD9D /* SwPSSH.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwPSSH.h; sourceTree = "<group>"; };
 		8BF9A76C2C6791D400FFFD9D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		8BF9A7702C67972200FFFD9D /* UnitPlayReadyHeaderKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitPlayReadyHeaderKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,13 +110,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8B150F6F2C7C7F4D001FED2B /* Exclude */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Exclude;
-			sourceTree = "<group>";
-		};
 		8B3A9EDB2C90B284002C734F /* Nagra */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +129,9 @@
 				8B5C5ADE2C675A990034A96E /* CHANGELOG.md */,
 				8B5C5AE02C675A990034A96E /* LICENSE */,
 				8B5C5ADF2C675A990034A96E /* Package.swift */,
+				8B25AE4B2F7E531D001A6D4B /* Package@swift-5.10.swift */,
+				8B25AE4A2F7E530D001A6D4B /* Package@swift-5.9.swift */,
+				8B25B0972F7E593B001A6D4B /* Package@swift-5.3.swift */,
 				8B5C5AE22C675A990034A96E /* SwPSSH.podspec */,
 				8B5C5AE52C675C5B0034A96E /* TODO.md */,
 				8B5C5AE12C675A990034A96E /* README.md */,
@@ -185,9 +182,7 @@
 		8B3B1BA62C6627840019070D /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				8B150F6F2C7C7F4D001FED2B /* Exclude */,
 				8B3B1B8A2C6626210019070D /* SwPSSH */,
-				8BF9A76A2C67918400FFFD9D /* SwPSSH.h */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -403,7 +398,6 @@
 				8BF9A7662C678BDC00FFFD9D /* PSSHCryptoUtil.swift in Sources */,
 				8B3B1BB42C66292F0019070D /* License.pb.swift in Sources */,
 				8B3B1BB62C662B050019070D /* PSSHBinaryIntegerExt.swift in Sources */,
-				8BF9A76B2C67918400FFFD9D /* SwPSSH.h in Sources */,
 				8B3A9EDD2C90B2B7002C734F /* NagraPsshData.swift in Sources */,
 				8B4148A22C665859000F07CE /* PlayReadyPsshData.swift in Sources */,
 				8B4148A02C665658000F07CE /* PSSHBox+PlayReady.swift in Sources */,
@@ -490,15 +484,20 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 5.0;
+				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Debug;
 		};
@@ -550,13 +549,18 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 6.0;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 5.0;
+				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Release;
 		};
@@ -565,7 +569,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -575,7 +579,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
@@ -585,7 +589,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.2.3;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = org.zeit.pssh;
@@ -597,9 +601,9 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4,7";
-				TVOS_DEPLOYMENT_TARGET = 11.0;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 				WATCHOS_DEPLOYMENT_TARGET = 5.0;
 			};
 			name = Debug;
@@ -609,7 +613,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -619,7 +623,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
@@ -629,7 +633,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.2.3;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = org.zeit.pssh;
@@ -640,9 +644,9 @@
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4,7";
-				TVOS_DEPLOYMENT_TARGET = 11.0;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 				WATCHOS_DEPLOYMENT_TARGET = 5.0;
 			};
 			name = Release;
@@ -663,7 +667,7 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -683,7 +687,7 @@
 				SUPPORTED_PLATFORMS = macosx;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Release;
 		};
@@ -725,7 +729,7 @@
 			repositoryURL = "https://github.com/apple/swift-protobuf.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.29.0;
+				minimumVersion = 1.28.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
